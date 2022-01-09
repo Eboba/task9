@@ -2,32 +2,31 @@ package main
 
 import (
 	"fmt"
+	"math"
 )
 
 func main() {
 
 	fmt.Println("Переполнение.")
 
-	const (
-		MaxUint32 = 1<<32 - 1
-		MaxUint16 = 1<<16 - 1
-		MaxUint8  = 1<<8 - 1
-	)
-
 	var (
-		n int
-		m int
+		n uint16
+		m uint8
+		a int
+		b int
 	)
 
-	for i := 1; i < MaxUint32; i++ {
+	for i := 0; i < math.MaxUint32; i++ {
 
-		if i%MaxUint16 == 0 {
-			n++
+		n++
+		m++
+
+		if m == 0 {
+			a++
 		}
-		if i%MaxUint8 == 0 {
-			m++
+		if n == 0 {
+			b++
 		}
 	}
-	fmt.Println("Переполнений чисел типа uint8, uint16:", n, m)
-	fmt.Println(MaxUint32/MaxUint16, MaxUint32/MaxUint8) //проверка
+	fmt.Println("Переполнений чисел типа uint8, uint16:", a, b)
 }
